@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 @Setter
 @Builder
 public class ArticleResponseDto {
-    @NonNull private Long articleId;
-    @NonNull private String content;
-    @NonNull private Long authorId;
-    @NonNull private String authorName;
-    @NonNull private LocalDateTime createdAt;
+    @NonNull private Long articleId; // 게시글 ID
+    @NonNull private String content; // 게시글 본문
+    @NonNull private Long authorId; // 작성자 ID
+    @NonNull private String authorName; // 작성자 이름
+    @NonNull private LocalDateTime createdAt; // 게시글 생성 시간
 }
