@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+// Article 조회 Repository
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Long> {
     // 자동 쿼리 생성으로 특정 사용자가 작성한 모든 게시글 조회
