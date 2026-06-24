@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class UserResponseDto {
-    @NonNull private Long id; // 유저 ID
-    @NonNull private String username; // 유저 이름
+public class FollowResponseDto {
+    @NonNull private Long followerId; // 팔로워 ID
+    @NonNull private Long followeeId; // 팔로이 ID
 }
