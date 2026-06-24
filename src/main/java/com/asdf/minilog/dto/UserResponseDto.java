@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @Builder
 public class UserResponseDto {
-    @NonNull private Long id;
-    @NonNull private String username;
+    @NonNull private Long id; // 유저 ID
+    @NonNull private String username; // 유저 이름
 }

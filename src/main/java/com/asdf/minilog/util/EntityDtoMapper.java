@@ -2,11 +2,13 @@ package com.asdf.minilog.util;
 
 import com.asdf.minilog.dto.ArticleResponseDto;
 import com.asdf.minilog.dto.FollowResponseDto;
+import com.asdf.minilog.dto.UserResponseDto;
 import com.asdf.minilog.entity.Article;
 import com.asdf.minilog.entity.Follow;
+import com.asdf.minilog.entity.User;
 
 public class EntityDtoMapper {
-    // Artcle Entity -> ArticleResponseDto 매퍼
+    // Article Entity -> ArticleResponseDto 매퍼
     public static ArticleResponseDto toDto(Article article){
         return ArticleResponseDto.builder()
                 .articleId(article.getId()) // 게시글 ID
@@ -17,11 +19,19 @@ public class EntityDtoMapper {
                 .build();
     }
 
-    // Follow Entity -> FollowResponseDTo 매퍼
+    // Follow Entity -> FollowResponseDto 매퍼
     public static FollowResponseDto toDto(Follow follow) {
         return FollowResponseDto.builder()
                 .followerId(follow.getFollower().getId()) // 팔로워 ID
                 .followeeId(follow.getFollowee().getId()) // 팔로이 ID
+                .build();
+    }
+
+    // User Entity -> UserResponseDto 매퍼
+    public static UserResponseDto toDto(User user) {
+        return UserResponseDto.builder()
+                .id(user.getId()) // 유저 ID
+                .username(user.getUsername()) // 유저 이름
                 .build();
     }
 }
