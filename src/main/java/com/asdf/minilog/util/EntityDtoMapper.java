@@ -31,7 +31,16 @@ public class EntityDtoMapper {
     public static UserResponseDto toDto(User user) {
         return UserResponseDto.builder()
                 .id(user.getId()) // 유저 ID
-                .username(user.getUsername()) // 유저 이름
+                .username(user.getUsername()) // 유저 이래
                 .build();
+    }
+
+    // FollowRequestDto -> Follow Entity 매퍼
+    public static Follow toEntity(Long followerId, Long followeeId) {
+        return Follow.builder()
+                .follower(User.builder().id(followerId).build())
+                .followee(User.builder().id(followeeId).build())
+                .build();
+
     }
 }
