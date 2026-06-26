@@ -52,6 +52,20 @@ public class ArticleService {
         return EntityDtoMapper.toDto(savedArticle);
     }
 
+    // 게시글 삭제
+    public void deleteArticle(Long articleId){
+        Article article =
+                articleRepository
+                        .findById(articleId)
+                        .orElseThrow(
+                                () ->
+                                        new ArticleNotFoundException(
+                                                String.format("해당 아이디(%d)를 가진 게시글을 찾을 수 없습니다.", articleId)));
+
+        // 삭제 처리
+        articleRepository.deleteById(articleId);
+    }
+
     // 게시글 수정
     // articleId: 수정할 게시글 ID, content: 새로 바꿀 게시글 내용
     public ArticleResponseDto updateArticle(Long articleId, String content){
