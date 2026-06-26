@@ -1,6 +1,5 @@
 package com.asdf.minilog.dto;
 
-
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Getter;

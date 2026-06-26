@@ -1,13 +1,11 @@
 package com.asdf.minilog.entity;
 
-
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "articles")
@@ -29,7 +27,9 @@ public class Article {
 
     // 게시글 작성자 정보
     @ManyToOne(fetch = FetchType.LAZY) // N:1
-    @JoinColumn(name = "author_id", nullable = false) // 외래키 컬럼 이름을 author_id로 만든다 (article.author_id -> user.id 연결)
+    @JoinColumn(
+            name = "author_id",
+            nullable = false) // 외래키 컬럼 이름을 author_id로 만든다 (article.author_id -> user.id 연결)
     private User author;
 
     // 게시글 작성 시간

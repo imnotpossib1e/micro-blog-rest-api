@@ -9,7 +9,7 @@ import com.asdf.minilog.entity.User;
 
 public class EntityDtoMapper {
     // Article Entity -> ArticleResponseDto 매퍼
-    public static ArticleResponseDto toDto(Article article){
+    public static ArticleResponseDto toDto(Article article) {
         return ArticleResponseDto.builder()
                 .articleId(article.getId()) // 게시글 ID
                 .content(article.getContent()) // 게시글 본문
@@ -41,6 +41,5 @@ public class EntityDtoMapper {
                 .follower(User.builder().id(followerId).build())
                 .followee(User.builder().id(followeeId).build())
                 .build();
-
     }
 }

@@ -1,10 +1,9 @@
 package com.asdf.minilog.repository;
 
 import com.asdf.minilog.entity.User;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
 
 // User 엔티티를 대상으로 DB 작업을 하는 Repository
 @Repository
