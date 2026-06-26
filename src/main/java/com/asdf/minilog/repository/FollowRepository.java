@@ -1,11 +1,10 @@
 package com.asdf.minilog.repository;
 
 import com.asdf.minilog.entity.Follow;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 // 누가 누구를 팔로우하는지 조회/검사
 @Repository

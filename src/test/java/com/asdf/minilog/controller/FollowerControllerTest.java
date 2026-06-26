@@ -1,4 +1,3 @@
 package com.asdf.minilog.controller;
 
-public class FollowerControllerTest {
-}
+public class FollowerControllerTest {}

@@ -6,13 +6,12 @@ import com.asdf.minilog.entity.User;
 import com.asdf.minilog.exception.UserNotFoundException;
 import com.asdf.minilog.repository.UserRepository;
 import com.asdf.minilog.util.EntityDtoMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
@@ -20,11 +19,9 @@ public class UserService {
     // 의존성 주입
     private final UserRepository userRepository;
 
-
-
     // 생성자 주입
     @Autowired
-    public UserService(UserRepository userRepository){
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -38,18 +35,18 @@ public class UserService {
 
     // id로 사용자 단일 조회
     @Transactional(readOnly = true)
-    public Optional<UserResponseDto> getUserById(Long userId){
-        return userRepository.findById(userId).map(EntityDtoMapper::toDto); // DB에서 ID로 User 조회해서 DTO로 변환
+    public Optional<UserResponseDto> getUserById(Long userId) {
+        return userRepository
+                .findById(userId)
+                .map(EntityDtoMapper::toDto); // DB에서 ID로 User 조회해서 DTO로 변환
     }
 
     // 회원가입 요청
     // 회원가입 요청 DTO를 받아 DB에 유저를 저장하고, 저장 결과를 DTO를 반환하는 메서드
-    public UserResponseDto createUser(UserRequestDto userRequestDto){
+    public UserResponseDto createUser(UserRequestDto userRequestDto) {
         // username으로 중복 사용자 체크
-        if (userRepository.findByUsername(userRequestDto.getUsername()).
-                isPresent()){
+        if (userRepository.findByUsername(userRequestDto.getUsername()).isPresent()) {
             throw new IllegalArgumentException("이미 존재하는 사용자 이름입니다.");
-
         }
 
         // 사용자 생성(Entity 생성 + 저장)
@@ -65,7 +62,7 @@ public class UserService {
 
     // 사용자 정보 수정
     // userId로 사용자를 찾은 뒤, 요청 DTO 값으로 수정하고 DB에 저장한 결과를 DTO로 반환
-    public UserResponseDto updateUser(Long userId, UserRequestDto userRequestDto){
+    public UserResponseDto updateUser(Long userId, UserRequestDto userRequestDto) {
         // 사용자 조회
         User user =
                 userRepository
@@ -73,7 +70,8 @@ public class UserService {
                         .orElseThrow( // 존재하지 않을 경우 처리
                                 () ->
                                         new UserNotFoundException(
-                                                String.format("해당 아이디(%d)를 가진 사용자를 찾을 수 없습니다.", userId)));
+                                                String.format(
+                                                        "해당 아이디(%d)를 가진 사용자를 찾을 수 없습니다.", userId)));
         // 값 수정 (Entity 변경)
         user.setUsername(userRequestDto.getUsername());
         user.setPassword(userRequestDto.getPassword());
@@ -86,7 +84,7 @@ public class UserService {
 
     // 사용자 삭제
     // userId로 사용자를 찾고, 존재하면 DB에서 삭제하는 메서드
-    public void deleteUser(Long userId){
+    public void deleteUser(Long userId) {
         // 사용자 조회
         User user =
                 userRepository
@@ -94,7 +92,8 @@ public class UserService {
                         .orElseThrow( // 존재하지 않을 경우 처리
                                 () ->
                                         new UserNotFoundException(
-                                                String.format("해당 아이디(%d)를 가진 사용자를 찾을 수 없습니다.", userId)));
+                                                String.format(
+                                                        "해당 아이디(%d)를 가진 사용자를 찾을 수 없습니다.", userId)));
         // 삭제
         userRepository.deleteById(user.getId());
     }
